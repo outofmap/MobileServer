@@ -1,0 +1,15 @@
+<html>
+    <body>
+        <b>name</b>님! 안녕하세요
+        <br>모바일 웹서버 프로그래밍 과정입니다.</br>
+    </body>
+</html>
+
+<div id='content'>
+    <p class='lead center'>webapplog: where code lives</p>
+    <div id ='side-bar' class='pull-right'>
+    <span class='content span4'>
+        <a href="/contact"
+    </span>
+    </div>
+</div>

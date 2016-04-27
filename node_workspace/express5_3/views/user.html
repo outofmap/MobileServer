@@ -1,0 +1,9 @@
+<% include header.html %>
+<h3>
+<ul>
+    <% for(var i =0; i < users.length; i++){ %>
+    <li><%=i+"  " + users[i].name + "  " +users[i].phone%></li>
+    <% } %>
+</ul>
+
+<% include footer.html %>

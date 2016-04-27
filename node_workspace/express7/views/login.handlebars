@@ -1,0 +1,14 @@
+{{#if login_ok}}
+    {{login_id}}님, 안녕하세요.<br>
+    모바일 웹서버 프로그래밍 과정입니다.<br>
+    <a href="/login_out">로그아웃</a>
+
+{{else}}
+<form action="/login_do" method="post">
+    <div>id</div>
+     <input type="text" name="loginId" value={{id}}>
+     <div>password</div>
+     <input type="text" name="pw" value={{pw}}>
+     <input type="submit" value="Submit">
+</form>
+{{/if}}

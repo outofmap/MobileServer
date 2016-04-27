@@ -1,0 +1,14 @@
+{{#if login_ok}}
+    {{login_id}}님, 안녕하세요.<br>
+    모바일 웹서버 프로그래밍 과정입니다.<br>
+
+{{else}}
+    <form action="/upload_do" enctype="multipart/form-data" method="post">
+
+    <input type="text" name="file_name">
+    <br><br>
+    <input type="file" name="image1" size="40" accept="image/*"><br><br>
+    <input type="file" name="image2" size="40" accept="image/*"><br><br>
+    <input type="submit" value="업로드">
+    </form>
+{{/if}}
