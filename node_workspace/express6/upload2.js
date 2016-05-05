@@ -20,7 +20,7 @@ app.post('/upload_do',function(req, res){
 
     form.on('fileBegin', function (name, file) {
         file.path = __dirname +'/uploads/'+ file.name;
-    })
+    });
     // form.uploadDir = __dirname + '/uploads';
     form.on('progress', function(bytesReceived, bytesExpected) {
         console.log(bytesReceived);

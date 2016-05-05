@@ -6,7 +6,7 @@ app.set('port',process.env.PORT || 3000);
 app.get('/names/:id',function (req, res) {
     res.type('text/plain');
     var result = names[req.params.id];
-    res.send(result);
+    res.send({rows:rows});
 
 });
 
