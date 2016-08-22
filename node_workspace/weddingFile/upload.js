@@ -8,6 +8,7 @@ var mysql = require('mysql');
 
 app.use(bodyparser);
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/pics', express.static(path.join(__dirname, 'uploads')));
 app.set('port',process.env.PORT || 3000);
 
 app.engine('handlebars', handlebars.engine);
@@ -16,12 +17,12 @@ app.set('view engine','handlebars');
 app.get('/upload', function (req,res) {
     res.render('upload');
 });
-var imageUrl = "/Users/Songhee/NEXT_PRJ/node_workspace/weddingFile/uploads";
+var imageUrl = "./img/";
 var pool = mysql.createPool({
     connectionLimit : 10,
     host : 'localhost',
     user : 'root',
-    password : '',
+    password : 'insideout1209',
     database : 'wedding'
 });
 app.get('/gallery', function(req,res){
@@ -34,13 +35,12 @@ app.get('/gallery', function(req,res){
             console.log(rows[1].filename);
             var images = [];
             for(var i =0; i < rows.length; i++){
-                images[i] = imageUrl+rows[i].filename;
+                images[i] = rows[i].filename;
             }
             console.log(images[0]);
             console.log(images[1]);
             res.render('gallery',{images: images});
             connection.release();
-            //404 not found문제 해결하기
         });
     });
 
@@ -57,26 +57,17 @@ app.post('/uploadIMG',function(req, res){
 
     });
     form.on('progress', function(bytesReceived, bytesExpected) {
-        // console.log(bytesReceived);
-        // console.log(bytesExpected);
     });
     form.parse(req, function(err, fields, files) {
-        // console.log('files');
-        // console.log(fields);
-        // console.log('files: ');
-        // console.log(files);
     });
     form.on('end',function(){
         pool.getConnection(function(err, connection) {
         // Use the connection
             connection.query( 'INSERT INTO image SET filename = ?', filename , function(err, rows) {
-            // And done with the connection. connection.release();
-            // Don't use the connection here, it has been returned to the pool. });
                 res.redirect('/sucess');
                 connection.release();
             });
         });
-
     });
 });
 
